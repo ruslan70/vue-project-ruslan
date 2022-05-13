@@ -59,7 +59,7 @@
         :width="logoWidth1"
       >
 
-      <p :style="{color: greenColor}">Preis für{{ priceTast }} Tastatur ist - <br>Total: {{ price.toFixed(2) + " Fr." }}</p>
+      <p :style="{color: greenColor}">Preis für {{ priceTast }}-Tastatur ist - <br>Total: {{ price.toFixed(2) + " Fr." }}</p>
       <img 
         :src="imgLink2" 
         :width="logoWidth2"
@@ -94,13 +94,24 @@
 
       <!-- v-for -->
     <ul>
-      <li
+      <!-- <li
         v-for="frucht in fruits"
         :key="frucht"
+      >{{ frucht }}</li><br> -->
+      <!-- select only first three elements -->
+      <li
+        v-for="frucht in fruits.slice(0, -7) "
+        :key="frucht"
       >{{ frucht }}</li>
+
     </ul>
 
-    </div>
+    <!-- components: methods-->
+    <button @click="grüezi()">Gruss</button>
+     <!-- components: computed-->
+    <p>{{ gruezi1 }}</p>
+
+  </div>
 
 </template>
 
@@ -111,7 +122,11 @@ export default {
   name: 'App',
   data() {
     return {
+      count1: 0,
+      count2: 0,
+      lastUpdate: null,
       firstName: "Ruslan",
+      lastName: "Khatuev",
       primaryColor: "blue",
       blueColor: "blue",
       backColor: "red",
@@ -128,11 +143,27 @@ export default {
       temperature: 25, 
       number: 30,
       inStock: true,
-      fruits: ["apple","kiwi","mango"] 
-    };
-  }
-  
+      fruits:  ["apple","kiwi","mango","strawberries", 
+              "lemone", "oarnge","melon", "banana",
+              "cherries", "figs"] 
+      
+    }
+  },
+  //  Hier will write ours functions
+  methods: {
+    gruezi: function () {
+      alert("Grüezi" + " " + this.firstName + " " + this.lastName);
+    },},
+  computed: {
+    gruezi1: function () {
+      return "Grüezi" + " " + this.firstName + "  " + this.lastName;
+    },
+  },
+    
 };
+  
+
+
   
 </script>
 
